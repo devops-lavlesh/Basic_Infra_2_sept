@@ -1,0 +1,17 @@
+name: "Basic_Workflow"
+
+on:
+  push:
+    branches:
+    - 'main'
+    - 'feature/**'
+
+jobs:
+  first_job:
+    name: first_job
+    runs-on: githubshine 
+
+    
+
+
+  
