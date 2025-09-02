@@ -42,10 +42,13 @@ jobs:
         continue-on-error: true
         working-directory: Infra/Environments/Dev
   manual-approval:
+    name: "Manual Approval"
     runs-on: ubuntu-latest
+    needs: terraform_job   # 👈 ye ensure karega ki plan ke baad chale
+    environment: dev       # 👈 environment protection (approver required)
     steps:
-      - uses: trstringer/manual-approval@v1
-        timeout-minutes: 60
+      - name: Wait for approval
+        run: echo "Waiting for approval before apply..."
     
    
 
