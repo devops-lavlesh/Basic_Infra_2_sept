@@ -41,6 +41,13 @@ jobs:
         run: terraform plan -no-color -input=false
         continue-on-error: true
         working-directory: Infra/Environments/Dev
+  manual-approval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: trstringer/manual-approval@v1
+        timeout-minutes: 60
+    
+   
 
     
 
