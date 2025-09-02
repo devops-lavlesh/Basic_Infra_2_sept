@@ -1,5 +1,4 @@
 name: "Basic_Workflow"
-
 on:
   push:
     branches:
@@ -20,8 +19,28 @@ jobs:
         with:
           client-id: 75a76cbd-f28e-41e3-87a2-ee79f04ed69c
           tenant-id: edc46f5e-3269-421e-84fb-da0d4f8b7263
-          subscription-id: b3b6b7ed-0b15-49ca-b3ce-092e07ca3fef
-       
+          
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true 
+        working-directory: Infra/Environments/Dev
+        
+      - name: Terraform Init
+        id: init
+        run: terraform init -input=false
+        working-directory: Infra/Environments/Dev
+        
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+        working-directory: Infra/Environments/Dev
+      
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color -input=false
+        continue-on-error: true
+        working-directory: Infra/Environments/Dev
 
     
 
