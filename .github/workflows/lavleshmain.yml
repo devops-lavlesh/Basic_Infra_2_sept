@@ -10,6 +10,8 @@ jobs:
   first_job:
     name: first_job
     runs-on: githubshine 
+    steps:
+      - name: print the shine
 
     
 
