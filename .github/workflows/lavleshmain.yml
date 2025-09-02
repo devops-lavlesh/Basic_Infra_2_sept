@@ -5,14 +5,23 @@ on:
     branches:
     - 'main'
     - 'feature/**'
-
+permissions:
+  id-token: write
+  contents: read   
 jobs:
-  first_job:
-    name: first_job
+  terraform_job:
+    name: terraform_job
     runs-on: githubshine 
     steps:
-      - name: print the shine
-        run: echo shine
+      - name: Checkout
+        uses: actions/checkout@v5.0.0  
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          client-id: 75a76cbd-f28e-41e3-87a2-ee79f04ed69c
+          tenant-id: edc46f5e-3269-421e-84fb-da0d4f8b7263
+          subscription-id: b3b6b7ed-0b15-49ca-b3ce-092e07ca3fef
+       
 
     
 
